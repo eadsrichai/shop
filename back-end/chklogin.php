@@ -2,15 +2,13 @@
     $u = $_GET['username'];
     $p = $_GET['password'];
 
-    // echo "username ". $u . "<br>";
-    // echo "password ". $p;
 
-    include_once('../db.php');
+    include_once('db.php');
 
-    $sql = "SELECT  acc_username, acc_password 
+    $sql = "SELECT username, password 
             FROM  account
-            WHERE  acc_username = '$u'  
-            AND    acc_password = '$p'
+            WHERE  username = '$u'  
+            AND    password = '$p'
             ";
     
      $result = $conn->query($sql);
@@ -23,7 +21,7 @@
             $_SESSION["password"] = $p;
     
             echo "username and password ถูกต้อง";
-            header( "location: showstudent.php" );
+            header( "location: welcome.php" );
             exit(0);
          }
     }else {
