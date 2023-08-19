@@ -6,7 +6,7 @@
     include_once('db.php');
 
     $sql = "SELECT username, password 
-            FROM  account
+            FROM   account
             WHERE  username = '$u'  
             AND    password = '$p'
             ";
