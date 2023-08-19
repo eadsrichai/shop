@@ -59,7 +59,7 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 echo "</table>";
-
+echo '<br><a href="../back-end/" class="btn btn-sm btn-outline-secconday">Login</a>';
 $conn->close();
 
 ?>
