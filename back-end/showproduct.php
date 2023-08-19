@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(isset($_SESSION['username']) && $_SESSION['username'] != null && isset($_SESSION['password']) && $_SESSION['password'] != null){
+    
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,6 +69,7 @@ if ($result->num_rows > 0) {
 echo "</table>";
 
 $conn->close();
+echo '<br><a href="delsession.php" class="btn btn-sm btn-outline-secconday">Logout</a>';
 ?>
 
 </div>
@@ -69,3 +78,11 @@ $conn->close();
 
 </body>
 </html>
+
+<?php
+    }else{
+        header( "location: index.php" );
+        exit(0);
+    }
+
+?>

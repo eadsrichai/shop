@@ -21,7 +21,7 @@
             $_SESSION["password"] = $p;
     
             echo "username and password ถูกต้อง";
-            header( "location: welcome.php" );
+            header( "location: showproduct.php" );
             exit(0);
          }
     }else {
