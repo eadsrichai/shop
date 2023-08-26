@@ -16,7 +16,10 @@
 <?php
 include_once('../back-end/db.php');
 
-$sql = "SELECT  p_id, p_name, p_price, p_detail FROM product";
+$sql = "SELECT  p_id, p_name, p_price, p_detail, t_name
+        FROM product
+        LEFT JOIN type
+        ON  product.t_id = type.t_id";
 
 $result = $conn->query($sql);
 
@@ -41,8 +44,7 @@ if ($result->num_rows > 0) {
         <th>ชื่อสินค้า</th>
         <th>ราคา</th>
         <th>รายละเอียด</th>
-        
-        <th></th>
+        <th>ประเภทสินค้า</th>
         </tr></thead><tbody>";
     while($row = $result->fetch_assoc()) {
         echo "<tr>";
@@ -51,7 +53,7 @@ if ($result->num_rows > 0) {
         echo "<td>" .$row['p_name']. "</td>";
         echo "<td>" .$row['p_price']. "</td>";
         echo "<td>" .$row['p_detail']. "</td>";
-        
+        echo "<td>" .$row['t_name']. "</td>";
         echo "</tr>";
 }
     echo "<tbody>";

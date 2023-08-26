@@ -19,8 +19,6 @@
             session_start();
             $_SESSION["username"] = $u;
             $_SESSION["password"] = $p;
-    
-            echo "username and password ถูกต้อง";
             header( "location: showproduct.php" );
             exit(0);
          }
