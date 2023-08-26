@@ -18,7 +18,7 @@
 
 
 <?php
-echo '<br><a href="delsession.php" class="col-1 btn btn-sm btn-outline-secondary">Logout</a>';
+
 include_once('db.php');
 
 $sql = "SELECT  p_id, p_name, p_price, p_detail, t_name 
@@ -26,23 +26,29 @@ $sql = "SELECT  p_id, p_name, p_price, p_detail, t_name
         LEFT JOIN type
         ON product.t_id = type.t_id";
 
-$result = $conn->query($sql);
+$result = $conn->query($sql);  ?>
 
-echo "<a href='formaddproduct.php'>เพิ่มสินค้า</a>";
-echo  "<div class='row'>";
 
-echo  "<form action='' method='GET' >";
-echo  "<div class='col-3'>";
-echo  "<input class='form-control' type='text' value=''  name='p_id'/>";
-echo  "<div";
-echo  "<div class='col-3'>";
-echo  "<input class='btn btn-primary' type='submit' value='ค้นหา'  name='find_by_id'/>";
-echo  "<div>";
-echo  "</form>";
-echo  "</div>";
-echo  "</div>";
+    <div class='row'>
+        <div class="col-2">
+            <a href='formaddproduct.php' class='btn btn-primary'>เพิ่มสินค้า</a>
+        </div>
+        <div class='col-2'>
+            <form action='' method='GET' >
+            <input class='btn btn-primary' type='submit' value='ค้นหา'  name='find_by_id'/>
+        </div>
+        <div class='col-2'>
+            <input class='form-control' type='text' value=''  name='p_id'/>
+        </div>
+        </form>
+        <div class="col d-flex justify-content-end">
+            <a href="delsession.php" class="btn btn-sm btn-outline-secondary">Logout</a>
+        </div>
+    </div>
 
-echo "<table class='table table-hover'>";
+<table class='table table-hover'>
+
+<?php
 if ($result->num_rows > 0) {
     echo "<thead><tr>
         <th>รหัสสินค้า</th>
