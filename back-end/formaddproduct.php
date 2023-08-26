@@ -32,11 +32,8 @@
 
             <?php include_once('db.php');
                 $sql = "SELECT * FROM type";
-                $result = $conn->query($sql);
-               
+                $result = $conn->query($sql);   
             ?>
-
-
             <div class="col-6">
               <lable>ประเภทสินค้า </label>
               <select name="t_id" id="">

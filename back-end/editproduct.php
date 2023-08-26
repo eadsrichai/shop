@@ -2,9 +2,11 @@
     $p_id = $_GET['p_id'];
     include_once('db.php');
 
-    $sql = "SELECT  p_id, p_name, p_price, p_detail 
+    $sql = "SELECT  p_id, p_name, p_price, p_detail, t_name 
             FROM product
-            WHERE p_id = '$p_id'";
+            LEFT JOIN type
+            ON  product.t_id = type.t_id 
+            WHERE product.p_id = '$p_id' ";
 
     $result = $conn->query($sql);
 
@@ -14,9 +16,10 @@
             $p_name = $row['p_name'];
             $p_price = $row['p_price'];
             $p_detail = $row['p_detail'];
+            $t_name = $row['t_name'];
         }
     }
-    $conn->close();
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +53,33 @@
                 <textarea rows="4" cols="50" class="form-control" name="p_detail"><?php echo $p_detail; ?> </textarea>
             </div>
 
+            <?php include_once('db.php');
+                $sql = "SELECT * FROM type";
+                $result = $conn->query($sql);   
+            ?>
+            <div class="col-6">
+              <lable>ประเภทสินค้า </label>
+              <select name="t_id" id="">
+                <?php  while ($row  = $result->fetch_assoc()) { ?>
+                   
+                        <?php if($t_name == $row['t_name']){ ?>
+                             <option selected value="<?php  echo $row['t_id']; ?>">
+                             <?php  echo $row['t_name']; ?>
+
+                      <?php  }else { ?>
+                         
+                            <option  value="<?php  echo $row['t_id']; ?>">
+                            <?php  echo $row['t_name']; ?>
+                    
+                    </option>
+                <?php
+                    } }
+                ?>
+
+              </select>
+            </div>
+
+
             <div class="col">
                
                 <input type="submit" value="บันทึกข้อมูล" class="btn btn-primary mt-3" name="save"  />
@@ -57,7 +87,9 @@
             
         </div>
     </form>
-    <?php  include('footer.php'); ?>
+    <?php 
+     $conn->close();
+    include('footer.php'); ?>
     </div>
 </body>
 </html>
