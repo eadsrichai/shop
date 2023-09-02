@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2023 at 06:48 AM
+-- Generation Time: Sep 02, 2023 at 04:46 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,6 +44,24 @@ INSERT INTO `account` (`username`, `password`, `id_role`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `myimg`
+--
+
+CREATE TABLE `myimg` (
+  `id` int(11) NOT NULL,
+  `image_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `myimg`
+--
+
+INSERT INTO `myimg` (`id`, `image_name`) VALUES
+(8, '320214066_1235963067129451_7258192630762074753_n.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product`
 --
 
@@ -60,11 +78,12 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`p_id`, `p_name`, `p_price`, `p_detail`, `t_id`) VALUES
-('p1001', 'Coke', 15, 'เครื่องดืม', 't02'),
-('p1002', 'ยาสีฟัน', 145.5, 'ยาสีฟันสมุนไพร', 't01'),
-('p1003', 'กระดาษ A4', 150, 'กระดาษ A4 จำนวน 500 แผ่น', 't01'),
+('p1001', 'Coke', 15, 'เครื่องดื่ม', 't02'),
+('p1002', 'ยาสีฟัน', 145.5, 'ยาสีฟันสมุนไพร ', 't02'),
+('p1003', 'กระดาษ A4', 150, 'กระดาษ A4 จำนวน 500 แผ่น  ', 't02'),
 ('p1004', 'โทรศัพท์', 25000, 'IPhone ', 't01'),
-('p1005', 'Mouse', 250, ' Mouse ยี่ห้อ Logitech  สีดำ', 't01');
+('p1006', 'กางเกงขายาว', 550.5, 'กางเกงขายาวชาย ', 't03'),
+('p1009', 'กางเกงขายาว', 990, ' xxxxxx', 't02');
 
 -- --------------------------------------------------------
 
@@ -102,7 +121,8 @@ CREATE TABLE `type` (
 
 INSERT INTO `type` (`t_id`, `t_name`) VALUES
 ('t01', 'เครื่องใช้ไฟฟ้า'),
-('t02', 'เครื่องดืม');
+('t02', 'เครื่องดืม'),
+('t03', 'เครื่องแต่งกายชาย');
 
 --
 -- Indexes for dumped tables
@@ -114,6 +134,12 @@ INSERT INTO `type` (`t_id`, `t_name`) VALUES
 ALTER TABLE `account`
   ADD PRIMARY KEY (`username`),
   ADD KEY `id_role` (`id_role`);
+
+--
+-- Indexes for table `myimg`
+--
+ALTER TABLE `myimg`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `product`
@@ -133,6 +159,16 @@ ALTER TABLE `role`
 --
 ALTER TABLE `type`
   ADD PRIMARY KEY (`t_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `myimg`
+--
+ALTER TABLE `myimg`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
