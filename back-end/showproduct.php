@@ -21,7 +21,7 @@
 
 include_once('db.php');
 
-$sql = "SELECT  p_id, p_name, p_price, p_detail, t_name 
+$sql = "SELECT  p_id, p_name, p_price, p_detail, image_name, t_name 
         FROM product
         LEFT JOIN type
         ON product.t_id = type.t_id";
@@ -54,6 +54,7 @@ if ($result->num_rows > 0) {
         <th>รหัสสินค้า</th>
         <th>ชื่อสินค้า</th>
         <th>ราคา</th>
+        <th>รูป</th>
         <th>รายละเอียด</th>
         <th>ประเภทสินค้า</th>
         <th cols='2' class='text-center'>Action</th>
@@ -62,16 +63,18 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "<tr>";
         $p_id = $row['p_id'];
+        $imageName = $row['image_name'];
         echo "<td>" .$p_id. "</td>";
         echo "<td>" .$row['p_name']. "</td>";
         echo "<td>" .$row['p_price']. "</td>";
+        echo "<td> <img src='uploads/$imageName' width='100px'</td>";
         echo "<td>" .$row['p_detail']. "</td>";
         echo "<td>" .$row['t_name']. "</td>";
         echo "<td><a class='btn btn-outline-warning' href='editproduct.php?p_id=".$p_id."'>Edit</a></td>";
         echo "<td><a class='btn btn-outline-danger' href='delete_product_by_id.php?p_id=".$p_id."'>Del</a></td>";
         echo "</tr>";
 }
-    echo "<tbody>";
+    echo "<tbody class='table-group-divider'>";
 } else {
     echo "0 results";
 }

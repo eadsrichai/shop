@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <?php include('header.php') ?>
-        <form action="addproduct.php" method="GET">
+        <form action="addproduct.php" method="POST" enctype="multipart/form-data">
         <div class="row row-cols-1 mt-2">
            
             <div class="col-2">
@@ -24,6 +24,10 @@
             <div class="col-2">
                 <label>ราคา</label>
                 <input type="text" value="" class="form-control" name="p_price"  />
+            </div>
+            <div class="col">
+                <label for="formFile" class="form-label">เลือกรูป</label>
+                <input class="form-control w-25" type="file" name="image" id="formFile">
             </div>
             <div class="col-5">
                 <label>รายละเอียด</label>
