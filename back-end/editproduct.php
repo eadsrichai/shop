@@ -2,7 +2,7 @@
     $p_id = $_GET['p_id'];
     include_once('db.php');
 
-    $sql = "SELECT  p_id, p_name, p_price, p_detail, t_name 
+    $sql = "SELECT  p_id, p_name, p_price, p_detail, image_name, t_name 
             FROM product
             LEFT JOIN type
             ON  product.t_id = type.t_id 
@@ -16,6 +16,7 @@
             $p_name = $row['p_name'];
             $p_price = $row['p_price'];
             $p_detail = $row['p_detail'];
+            $image_name = $row['image_name'];
             $t_name = $row['t_name'];
         }
     }
@@ -32,7 +33,7 @@
 <body>
     <div class="container">
         <?php include('header.php') ?>
-        <form action="edit_product_by_id.php" method="GET">
+        <form action="edit_product_by_id.php" method="POST" enctype="multipart/form-data">
         <div class="row row-cols-1 mt-2">
            
             <div class="col-2">
@@ -51,6 +52,11 @@
             <div class="col-6">
                 <label>รายละเอียด</label>
                 <textarea rows="4" cols="50" class="form-control" name="p_detail"><?php echo $p_detail; ?> </textarea>
+            </div>
+            <div>
+                 <img src='uploads/<?php echo $image_name; ?>' width='100px'/>
+                 <label for="formFile" class="form-label">Edit</label>
+                 <input class="form-control w-25" type="file" name="image" id="formFile">
             </div>
 
             <?php include_once('db.php');
